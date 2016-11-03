@@ -12,10 +12,18 @@ RUN apt-get install -y \
 	libnetcdff-dev \
 	libnetcdff6 \
 	subversion \
-	gfortran
+	gfortran \
+	csh \
+	gawk
 
 RUN svn export http://oceans11.lanl.gov/svn/SCRIP/trunk/SCRIP
 ADD linuxgfortran_serial.gnu SCRIP/build
-RUN ./setupTargetDir . && make
+RUN cd SCRIP && \
+	./setupTargetDir . && \
+	make
 
-CMD /bin/bash
+# Assumes that /work contains a valid scrip_in file and input grid files,
+# via a volume mapping from the docker host
+# For example, run via:
+# $ docker run -it -v <host_work>:/work <image_id> 
+CMD cd /work; /SCRIP/scrip

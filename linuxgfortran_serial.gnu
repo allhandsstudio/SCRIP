@@ -91,7 +91,7 @@ LDFLAGS = $(ABI) -fopenmp
 # be configured with --enable-separate-fortran enabling it to create 
 # the libnetcdff.a libs
 
-LIBS = $(NETCDFLIB) -lnetcdf32 -lnetcdff -lhdf5_hl -lhdf5 -lz
+LIBS = $(NETCDFLIB) -lnetcdf -lnetcdff -lhdf5_hl -lhdf5 -lz
 
  
 ifeq ($(MPI),yes)
